@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Products.Views.ProductsView"
+             Title="ProductsView">
+
+    <CollectionView
+        ItemsSource="{Binding Products}"
+        >
+
+        <CollectionView.ItemTemplate>
+
+            <DataTemplate>
+
+                <Grid
+                    Margin="15, 10, 15, 0"
+                    ColumnDefinitions="0.1*, 0.2*, 0.7*"
+                    RowDefinitions="*, *"
+                    >
+
+                    <Frame
+                        BorderColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource White}}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.RowSpan="2"
+                        >
+                        <Frame.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Offset="0" Color="{AppThemeBinding Dark={StaticResource Gray900}, Light='#F8F9FA'}" />
+                                <GradientStop Offset="1" Color="{AppThemeBinding Dark={StaticResource Gray600}, Light='#DEE2E6'}" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+
+                    <Image
+                        Grid.ColumnSpan="2"
+                        Grid.RowSpan="2"
+                        HeightRequest="100"
+                        Source="product_placeholder"
+                        />
+
+                    <Label
+                        Grid.Column="2"
+                        FontSize="Large"
+                        Text="{Binding Name}"
+                        />
+
+                    <Label
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        FontSize="Large"
+                        Text="{Binding Price, StringFormat='{0:C}'}"
+                        />
+
+                </Grid>
+
+            </DataTemplate>
+            
+        </CollectionView.ItemTemplate>
+        
+    </CollectionView>
+    
+</ContentPage>

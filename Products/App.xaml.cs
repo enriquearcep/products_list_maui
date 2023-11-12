@@ -1,4 +1,6 @@
-﻿namespace Products
+﻿using Products.Views;
+
+namespace Products
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new ProductsView();
         }
     }
 }
