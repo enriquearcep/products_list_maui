@@ -49,4 +49,66 @@
 
     </DataTemplate>
 
+    <DataTemplate x:Key="OfferProductDataTemplate">
+
+        <Grid
+            Margin="15, 10, 15, 0"
+            ColumnDefinitions="0.3*, 0.7*"
+            RowDefinitions="*, *"
+            >
+
+            <Frame
+                BorderColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource White}}"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                >
+                <Frame.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0" Color="#FFDB60" />
+                        <GradientStop Offset="1" Color="#EEB54C" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+
+            <Image
+                Grid.RowSpan="2"
+                HeightRequest="100"
+                Source="product_placeholder"
+                />
+
+            <Label
+                Grid.Column="2"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="{Binding Name, StringFormat='OFERTA: {0}'}"
+                />
+
+            <HorizontalStackLayout
+                Grid.Column="2"
+                Grid.Row="1"
+                HorizontalOptions="Start"
+                Spacing="15"
+                >
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="{Binding OfferPrice, StringFormat='{0:C}'}"
+                    VerticalOptions="CenterAndExpand"
+                    />
+
+                <Label
+                    FontSize="Small"
+                    Text="{Binding Price, StringFormat='{0:C}'}"
+                    TextColor="DarkRed"
+                    TextDecorations="Strikethrough"
+                    VerticalOptions="CenterAndExpand"
+                    />
+
+            </HorizontalStackLayout>
+
+        </Grid>
+
+    </DataTemplate>
+
 </ResourceDictionary>

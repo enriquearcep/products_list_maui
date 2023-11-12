@@ -17,7 +17,12 @@ namespace Products.Selectors
             {
                 if(model.HasOffer)
                 {
-                    return new DataTemplate();
+                    Application
+                        .Current
+                        .Resources
+                        .TryGetValue("OfferProductDataTemplate", out var offerProductDataTemplate);
+
+                    return offerProductDataTemplate as DataTemplate;
                 }
             }
 
