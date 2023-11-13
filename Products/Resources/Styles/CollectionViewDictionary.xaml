@@ -1,51 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <?xaml-comp compile="true" ?>
-<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Products.ViewModels"
+    >
 
     <DataTemplate x:Key="SimpleProductDataTemplate">
 
-        <Grid
-            Margin="15, 10, 15, 0"
-            ColumnDefinitions="0.1*, 0.2*, 0.7*"
-            RowDefinitions="*, *"
-            >
+        <SwipeView>
 
-            <Frame
-                BorderColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource White}}"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Grid.RowSpan="2"
+            <SwipeView.LeftItems>
+                <SwipeItems>
+                    <SwipeItem
+                        BackgroundColor="DarkRed"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProductsViewModel}}, Path=DeleteCommand}"
+                        CommandParameter="{Binding .}"
+                        IconImageSource="trash"
+                        />
+                </SwipeItems>
+            </SwipeView.LeftItems>
+            
+            <Grid
+                Margin="15, 10, 15, 0"
+                ColumnDefinitions="0.1*, 0.2*, 0.7*"
+                RowDefinitions="*, *"
                 >
-                <Frame.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Offset="0" Color="{AppThemeBinding Dark={StaticResource Gray900}, Light='#F8F9FA'}" />
-                        <GradientStop Offset="1" Color="{AppThemeBinding Dark={StaticResource Gray600}, Light='#DEE2E6'}" />
-                    </LinearGradientBrush>
-                </Frame.Background>
-            </Frame>
 
-            <Image
-                Grid.ColumnSpan="2"
-                Grid.RowSpan="2"
-                HeightRequest="100"
-                Source="product_placeholder"
-                />
+                <Frame
+                    BorderColor="{AppThemeBinding Dark={StaticResource Gray900}, Light={StaticResource White}}"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="2"
+                    >
+                    <Frame.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Offset="0" Color="{AppThemeBinding Dark={StaticResource Gray900}, Light='#F8F9FA'}" />
+                            <GradientStop Offset="1" Color="{AppThemeBinding Dark={StaticResource Gray600}, Light='#DEE2E6'}" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                </Frame>
 
-            <Label
-                Grid.Column="2"
-                FontSize="Large"
-                Text="{Binding Name}"
-                />
+                <Image
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="2"
+                    HeightRequest="100"
+                    Source="product_placeholder"
+                    />
 
-            <Label
-                Grid.Column="2"
-                Grid.Row="1"
-                FontSize="Large"
-                Text="{Binding Price, StringFormat='{0:C}'}"
-                />
+                <Label
+                    Grid.Column="2"
+                    FontSize="Large"
+                    Text="{Binding Name}"
+                    />
 
-        </Grid>
+                <Label
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    FontSize="Large"
+                    Text="{Binding Price, StringFormat='{0:C}'}"
+                    />
+
+            </Grid>
+
+        </SwipeView>
 
     </DataTemplate>
 

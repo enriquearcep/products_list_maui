@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\product_placeholder.png" />
+	  <None Remove="Resources\Images\trash.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

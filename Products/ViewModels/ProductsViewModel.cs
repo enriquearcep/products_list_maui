@@ -61,6 +61,11 @@ namespace Products.ViewModels
         {
             RefreshProducts(Products.Count);
         });
+
+        public ICommand DeleteCommand => new Command((product) =>
+        {
+            Products.Remove(product as Product);
+        });
         #endregion
 
         #region Constructors
