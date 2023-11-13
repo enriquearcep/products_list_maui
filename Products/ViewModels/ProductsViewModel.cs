@@ -56,19 +56,33 @@ namespace Products.ViewModels
 
             IsRefreshing = false;
         });
+
+        public ICommand ThresholdReachedCommand => new Command(async () =>
+        {
+            RefreshProducts(Products.Count);
+        });
         #endregion
 
         #region Constructors
         public ProductsViewModel()
         {
+            Products = new ObservableCollection<Product>();
+
             RefreshProducts();
         }
         #endregion
 
         #region Methods
-        private void RefreshProducts()
+        private void RefreshProducts(int lastIndex = 0)
         {
-            Products = new ObservableCollection<Product>()
+            if(lastIndex == 0)
+            {
+                Products = new ObservableCollection<Product>();
+            }
+
+            int itemsPerPage = 10;
+
+            var items = new ObservableCollection<Product>()
             {
                 new Product()
                 {
@@ -181,8 +195,135 @@ namespace Products.ViewModels
                     HasOffer = true,
                     OfferPrice = 95,
                     Stock = 36
+                },
+
+                new Product()
+                {
+                    Name = "Echo Dot",
+                    Price = 1215,
+                    HasOffer = false,
+                    Stock = 54
+                },
+                new Product()
+                {
+                    Name = "Cable HDMI 3m",
+                    Price = 215,
+                    HasOffer = true,
+                    OfferPrice = 188,
+                    Stock = 20
+                },
+                new Product()
+                {
+                    Name = "Audífonos JBL",
+                    Price = 780,
+                    HasOffer = true,
+                    OfferPrice = 699,
+                    Stock = 2
+                },
+                new Product()
+                {
+                    Name = "Porta cables",
+                    Price = 100,
+                    HasOffer = true,
+                    OfferPrice = 70,
+                    Stock = 65
+                },
+                new Product()
+                {
+                    Name = "Tenis Lacoste",
+                    Price = 1800,
+                    HasOffer = false,
+                    Stock = 5
+                },
+                new Product()
+                {
+                    Name = "Micro SD 128GB",
+                    Price = 130,
+                    HasOffer = false,
+                    Stock = 200
+                },
+                new Product()
+                {
+                    Name = "Pintura blanca 3L",
+                    Price = 180,
+                    HasOffer = false,
+                    Stock = 15
+                },
+                new Product()
+                {
+                    Name = "Collar mediando p/p",
+                    Price = 120,
+                    HasOffer = true,
+                    OfferPrice = 105,
+                    Stock = 120
+                },
+                new Product()
+                {
+                    Name = "Almohada T600",
+                    Price = 280,
+                    HasOffer = false,
+                    Stock = 6
+                },
+                new Product()
+                {
+                    Name = "Teclado Logitech",
+                    Price = 400,
+                    HasOffer = true,
+                    OfferPrice = 389,
+                    Stock = 20
+                },
+                new Product()
+                {
+                    Name = "Stream Deck 15t",
+                    Price = 2900,
+                    HasOffer = false,
+                    Stock = 1
+                },
+                new Product()
+                {
+                    Name = "Bivlia RV 1960",
+                    Price = 1000,
+                    HasOffer = false,
+                    Stock = 16
+                },
+                new Product()
+                {
+                    Name = "Mouse Logitech",
+                    Price = 215,
+                    HasOffer = false,
+                    Stock = 10
+                },
+                new Product()
+                {
+                    Name = "Silla Gamer",
+                    Price = 6900,
+                    HasOffer = true,
+                    OfferPrice = 5500,
+                    Stock = 2
+                },
+                new Product()
+                {
+                    Name = "Escritorio CC",
+                    Price = 1800,
+                    HasOffer = false,
+                    Stock = 1
+                },
+                new Product()
+                {
+                    Name = "Plumones T55",
+                    Price = 180,
+                    HasOffer = true,
+                    OfferPrice = 120,
+                    Stock = 20
                 }
             };
+
+            var pageItems = items.Skip(lastIndex).Take(itemsPerPage).ToList();
+
+            foreach (var item in pageItems)
+            {
+                Products.Add(item);
+            }
         }
         #endregion
     }
