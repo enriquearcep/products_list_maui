@@ -1,16 +1,72 @@
 ﻿using Products.Models;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Products.ViewModels
 {
-    public class ProductsViewModel
+    public class ProductsViewModel : INotifyPropertyChanged
     {
-        #region Properties
-        public ObservableCollection<Product> Products { get; set; }
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Full properties
+        private ObservableCollection<Product> _products;
+
+        public ObservableCollection<Product> Products
+        {
+            get => _products;
+
+            set
+            {
+                if (_products != value)
+                {
+                    _products = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Products)));
+                }
+            }
+        }
+
+        private bool _isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+
+            set
+            {
+                if(_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsRefreshing)));
+                }
+            }
+        }
+        #endregion
+
+        #region Commands
+        public ICommand RefreshCommand => new Command(async () =>
+        {
+            IsRefreshing = true;
+
+            await Task.Delay(3000);
+
+            RefreshProducts();
+
+            IsRefreshing = false;
+        });
         #endregion
 
         #region Constructors
         public ProductsViewModel()
+        {
+            RefreshProducts();
+        }
+        #endregion
+
+        #region Methods
+        private void RefreshProducts()
         {
             Products = new ObservableCollection<Product>()
             {

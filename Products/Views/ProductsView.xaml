@@ -10,12 +10,19 @@
         <selectors:ProductDataTemplateSelector x:Key="ProductTemplate" />
 
     </ContentPage.Resources>
-    
-    <CollectionView
-        ItemsSource="{Binding Products}"
-        ItemTemplate="{StaticResource ProductTemplate}"
+
+    <RefreshView
+        Command="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsRefreshing}"
         >
 
-    </CollectionView>
-    
+        <CollectionView
+            ItemsSource="{Binding Products}"
+            ItemTemplate="{StaticResource ProductTemplate}"
+            >
+
+        </CollectionView>
+
+    </RefreshView>
+
 </ContentPage>
