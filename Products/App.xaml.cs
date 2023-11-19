@@ -8,7 +8,7 @@ namespace Products
         {
             InitializeComponent();
 
-            MainPage = new ProductsView();
+            MainPage = new LayoutView();
         }
     }
 }
