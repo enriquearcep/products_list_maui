@@ -58,10 +58,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\LinearLayoutView.xaml.cs">
+	    <DependentUpon>LinearLayoutView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\GridLayoutView.xaml.cs">
+	    <DependentUpon>GridLayoutView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Resources\Styles\CollectionViewDictionary.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\LayoutView.xaml">
+	  <MauiXaml Update="Views\LinearLayoutView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GridLayoutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProductsView.xaml">

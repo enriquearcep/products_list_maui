@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Products.Views.LinearLayoutView"
+             Title="LayoutView">
+
+    <CollectionView
+        ItemsSource="{Binding Products}"
+        >
+
+        <CollectionView.Header>
+
+            <Frame
+                BackgroundColor="{StaticResource Primary}"
+                >
+
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="Productos"
+                    />
+
+            </Frame>
+            
+        </CollectionView.Header>
+
+        <CollectionView.Footer>
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+
+                <Label FontSize="Title">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Powered by: " TextColor="{StaticResource Tertiary}"/>
+                            <Span Text=".NET MAUI" TextColor="{StaticResource Primary}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </HorizontalStackLayout>
+            
+        </CollectionView.Footer>
+
+        <CollectionView.ItemsLayout>
+
+            <LinearItemsLayout Orientation="Vertical" />
+
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+
+            <DataTemplate>
+
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600}, Light={StaticResource Gray100}}"
+                    HeightRequest="250"
+                    Margin="15"
+                    WidthRequest="200"
+                    >
+
+                    <VerticalStackLayout
+                        VerticalOptions="CenterAndExpand"
+                        >
+
+                        <Image
+                            Source="product_placeholder"
+                            />
+
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Name}"
+                            />
+
+                    </VerticalStackLayout>
+
+                </Frame>
+                
+            </DataTemplate>
+            
+        </CollectionView.ItemTemplate>
+        
+    </CollectionView>
+    
+</ContentPage>

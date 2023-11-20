@@ -2,9 +2,9 @@ using Products.ViewModels;
 
 namespace Products.Views;
 
-public partial class LayoutView : ContentPage
+public partial class GridLayoutView : ContentPage
 {
-	public LayoutView()
+	public GridLayoutView()
 	{
 		InitializeComponent();
 		BindingContext = new ProductsViewModel();
